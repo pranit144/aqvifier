@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Water Insights</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid #eee;
+            border-top: 8px solid #e53935;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 60px auto;
+            display: block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #232526 0%, #414345 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 24px;
+            height: 72px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            border-radius: 0 0 18px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            z-index: 100;
+        }
+        .nav-btn {
+            color: #fff;
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 1.15rem;
+            padding: 0 36px;
+            height: 56px;
+            margin: 0 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .nav-btn:hover {
+            color: #e53935;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(229,57,53,0.08);
+        }
+        .nav-btn.active {
+            color: #e53935;
+            background: #fff;
+            box-shadow: 0 6px 24px rgba(229,57,53,0.12);
+        }
+        .nav-btn.active::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -8px;
+            transform: translateX(-50%);
+            width: 36px;
+            height: 4px;
+            background: linear-gradient(90deg, #e53935 0%, #ffb300 100%);
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(229,57,53,0.18);
+        }
+        .nav-btn .fa {
+            font-size: 1.3em;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
+        }
+        .map-container {
+          margin: 0;
+          max-width: none;
+          background: none;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 0;
+          min-height: 0;
+          height: calc(100vh - 64px);
+          width: 100vw;
+          position: absolute;
+          top: 64px;
+          left: 0;
+        }
+        .map-title {
+            font-size: 2rem;
+            color: #222;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+    <button class="nav-btn active" onclick="showMap(0)"><i class="fa-solid fa-fire"></i> Artificial Recharge Hotspots</button>
+    <button class="nav-btn" onclick="showMap(1)"><i class="fa-solid fa-water"></i> GroundwaterLevel Heatmap</button>
+    <button class="nav-btn" onclick="showMap(2)"><i class="fa-solid fa-layer-group"></i> Aquifer Type Insights</button>
+    <button class="nav-btn" onclick="showMap(3)"><i class="fa-solid fa-cloud-rain"></i> Rainfall Trend Analysis</button>
+    </nav>
+    <div class="map-container" id="mapContainer">
+    <div id="loadingSpinner" class="spinner"></div>
+    </div>
+    <script>
+        // Placeholder HTML for each map
+        const maps = [
+            `<iframe src='insightful_recharge_map.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
+            `<iframe src='groundwater_map.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
+            `<iframe src='aquifer_map_with_state_pie.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
+            `<iframe src='district_rainfall_map.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`, 
+        ];
+        function showMap(idx) {
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('mapContainer').innerHTML = `<div id='loadingSpinner' class='spinner'></div>` + maps[idx];
+            document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === idx);
+            });
+        }
+
+        function hideSpinner() {
+            const spinner = document.getElementById('loadingSpinner');
+            if (spinner) spinner.style.display = 'none';
+        }
+        // Show first map on load
+        showMap(0);
+    </script>
+</body>
+</html>
