@@ -122,10 +122,10 @@
     <script>
         // Placeholder HTML for each map
         const maps = [
-            `<iframe src='insightful_recharge_map.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
-            `<iframe src='groundwater_map.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
-            `<iframe src='aquifer_map_with_state_pie.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
-            `<iframe src='district_rainfall_map.html' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`, 
+            `<iframe src='https://profound-genie-b147ba.netlify.app/' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
+            `<iframe src='' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
+            `<iframe src='https://bucolic-figolla-2bf211.netlify.app/' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`,
+            `<iframe src='https://sweet-tanuki-cd03a9.netlify.app/' style='width:100vw;height:calc(100vh - 64px);border:none;' onload='hideSpinner()'></iframe>`, 
         ];
         function showMap(idx) {
             document.getElementById('loadingSpinner').style.display = 'block';
